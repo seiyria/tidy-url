@@ -26,13 +26,9 @@ handlers['stardockentertainment.info'] = {
             const target = str.split('/').pop();
             let url = '';
 
-            if (typeof target == 'undefined') throw Error('Undefined target');
+            if (typeof target == 'undefined') throw new Error('Undefined target');
 
-            if (typeof atob === 'undefined') {
-                url = Buffer.from(target, 'base64').toString('binary');
-            } else {
-                url = atob(target);
-            }
+            url = decodeBase64(target);
 
             return { url: url };
         } catch (error) {
@@ -47,7 +43,7 @@ handlers['0yxjo.mjt.lu'] = {
             const target = str.split('/').pop();
             let url = '';
 
-            if (typeof target == 'undefined') throw Error('Undefined target');
+            if (typeof target == 'undefined') throw new Error('Undefined target');
 
             url = decodeBase64(target);
 
@@ -79,7 +75,7 @@ handlers['deals.dominos.co.nz'] = {
             const target = str.split('/').pop();
             let url = '';
 
-            if (!target) throw Error('Missing target');
+            if (!target) throw new Error('Missing target');
             url = decodeBase64(target);
 
             return { url };
